@@ -35,3 +35,28 @@ CREATE TABLE silver.crm_sales_details (
   sale_price FLOAT,
   dwh_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-- Create table under SILVER LAYER for ERP/CUST_AZ12 file
+CREATE TABLE silver.erp_cust (
+  cid VARCHAR(25),
+  dob DATE,
+  sex VARCHAR(10),
+  dwh_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table under SILVER LAYER for ERP/LOC_A101 file
+CREATE TABLE silver.erp_loc (
+  cid VARCHAR(25),
+  country VARCHAR(50),
+  dwh_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table under SILVER LAYER for ERP/PX_CAT_G1V2 file
+CREATE TABLE silver.erp_prod_cat (
+  id VARCHAR(25),
+  category VARCHAR(50),
+  sub_category VARCHAR(50),
+  maintenance VARCHAR(5),
+  dwh_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
