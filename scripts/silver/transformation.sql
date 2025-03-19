@@ -1,3 +1,4 @@
+-- Prefer this file only when you want the changes to reflect in bronze layer tables also.
 -- Checking bronze.crm_cust_info have any wrong values.
 -- Starting from cust_id as this is the PRIMARY KEY column and cannot have duplicate or NULL values.
 SELECT cust_id, COUNT(*) AS total_count
@@ -31,4 +32,4 @@ DELETE FROM bronze.crm_cust_info
 WHERE cust_id IS NULL;
 
 
--- NOTE: We are using DELETE command instead of TRUNCATE because TRUNCATE does not support ROLLBACK functionality.
+-- NOTE: We are using DELETE command instead of TRUNCATE because it executes over ROWS and obeys the TRIGGER conditions if applied.
