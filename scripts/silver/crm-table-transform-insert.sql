@@ -7,7 +7,11 @@ NOTE: This transformatio will not effect original raw data. It will transform on
 */
 
 -- TRANSFORMATION & INSERTION OF crm_cust_id TABLE INTO SILVER LAYER
-TRUNCATE TABLE silver.crm_cust_info
+TRUNCATE TABLE silver.crm_cust_info;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.crm_cust_info';
+
 INSERT INTO silver.crm_cust_info(cust_id, cust_key, cust_firstname, cust_lastname, cust_marital_status, cust_gndr, cust_create_date)
 SELECT
 cust_id,
@@ -32,7 +36,11 @@ WHERE flag_count = 1;
 
 
 -- TRANSFORMATION & INSERTION OF crm_prod_info TABLE INTO SILVER LAYER
-TRUNCATE TABLE silver.crm_prod_info
+TRUNCATE TABLE silver.crm_prod_info;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.crm_prod_info';
+
 INSERT INTO silver.crm_prod_info (prod_id, prod_key, prod_cat_id, prod_cat_key, prod_name, prod_cost, prod_line, prod_start_date, prod_end_date)
 SELECT prod_id, prod_key,
 REPLACE(SUBSTRING(prod_key, 1, 5), '-', '_') AS prod_cat_id,
@@ -52,9 +60,12 @@ FROM bronze.crm_prod_info;
 
 
 -- TRANSFORMATION & INSERTION OF crm_sales_details TABLE INTO SILVER LAYER
-TRUNCATE TABLE silver.crm_sales_details
-INSERT INTO silver.crm_sales_details (sales_ord_num, sales_prod_key, sales_cust_id,
-sales_ord_date, sales_ship_date, sales_due_date, sales, quantity, sales_price)
+TRUNCATE TABLE silver.crm_sales_details;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.crm_sales_details';
+
+INSERT INTO silver.crm_sales_details (sales_ord_num, sales_prod_key, sales_cust_id, sales_ord_date, sales_ship_date, sales_due_date, sales, quantity, sales_price)
 SELECT sale_ord_num,
 sale_prod_key,
 sale_cust_id,
