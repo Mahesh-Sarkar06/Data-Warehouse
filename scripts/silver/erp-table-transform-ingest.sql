@@ -9,6 +9,10 @@ NOTE: This transformatioN will not effect original raw data. It will transform o
 
 -- TRANSFORMATION & INSERTION OF erp_cust TABLE INTO SILVER LAYER
 TRUNCATE TABLE silver.erp_cust;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.erp_cust';
+
 INSERT INTO silver.erp_cust (cid, dob, sex)
 SELECT
 CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LENGTH(cid))
@@ -26,6 +30,10 @@ FROM bronze.erp_cust;
 
 -- TRANSFORMATION & INSERTION OF erp_loc TABLE INTO SILVER LAYER
 TRUNCATE TABLE silver.erp_loc;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.erp_loc';
+
 INSERT INTO silver.erp_loc (cid, country)
 SELECT
 REPLACE(cid, '-', '') cid,
@@ -39,6 +47,10 @@ FROM bronze.erp_loc;
 
 -- TRANSFORMATION & INSERTION OF erp_prod_cat TABLE INTO SILVER LAYER
 TRUNCATE TABLE silver.erp_prod_cat;
+
+RAISE NOTICE 'Table values trancated';
+RAISE NOTICE 'Inserting values into silver.erp_prod_cat';
+
 INSERT INTO silver.erp_prod_cat (id, category, sub_category, maintenance)
 SELECT id,
 category,
